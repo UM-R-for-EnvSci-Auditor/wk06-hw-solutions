@@ -1,41 +1,43 @@
-# Week 05 - Homework <br/> Intro RMarkdown and {ggplot}
+# Week 06 - Homework <br/> {ggplot} part II
 
-Welcome to your assignment for **week 5**. As usual, **Clone** this repo into your own :computer:  using RStudio, as we saw in class.
+Welcome to your assignment for **week 6**. As usual, **Clone** this repo into your own :computer:  using RStudio, as we saw in class.
 
-This week we will work with the **ditch data**[1](https://www.springer.com/gp/book/9780387459677) that we saw in class. This data consists of series of water quality measures for a number of sites (ditches) colected over a number of years and at various depths.
+For this week's assignment you will need to create a short **"report" in an rmarkdown** format with its associated `.md` and `.html` outputs. In this report you will guide me through the process of replicating the following items. Feel free to add as much text as you want explaining your steps.
 
-For this week's assignment you will need to create a short **"report" in an RMarkdown** format with its associated `.md` and `.html` outputs. In this report you will guide me through the process of replicating the following items. Feel free to add as much text as you want explaining your steps.
+## The data
 
-## Item 1
+All data for this assignment is directly taken or modified from the Zur et al (2007) book [1](https://www.springer.com/gp/book/9780387459677)
 
-A **summary table** showing the mean and standard deviation values for sulphate in each site. You can use the table below for reference.
+For the first 3 figures we will use a dataset consisting of species counts for a number of decapod species (those starting with “f_”) measured in 45 samples. Abiotic data for those sampling locations is also provided (eg, the temperature and salinity at 1m: t1m, s1m)
 
-|site   |parameter | mean_measure| sd_measure|
-|:------|:---------|------------:|----------:|
-|Site 1 |sulphate  |       347.40|     196.93|
-|Site 2 |sulphate  |       386.44|     223.15|
-|Site 3 |sulphate  |        87.90|      89.80|
-|Site 4 |sulphate  |        61.70|      53.98|
-|Site 5 |sulphate  |       370.22|     150.09|
+For the fourth figure, we will use a dataset of mean annual sea surface temperatures (sst) collected at three different stations.
 
 
-## Item 2
+## Figure 1
 
-The following figure showing the sulphate summary data from the previous table.
+With the decapod data, create the following figure showing species counts with total counts per site
 
-![](figures/figures_to_replicate/Figure_1.png)<!-- -->
+![](figures/figures_to_replicate/figure_1-1.png)<!-- -->
 
-## Item 2
+## Figure 2
 
-The following figure summarizing the chloride concentrations in each of the sites.
+With the decapod data, create the following figure showing the proportion of species counts counts per site
 
-![](figures/figures_to_replicate/Figure_2.png)<!-- -->
+![](figures/figures_to_replicate/figure_2-1.png)<!-- -->
 
-## Item 2
 
-The following figure showing temporal trends in the concentrations of chloride for each of the sites.
+## Figure 3
 
-![](figures/figures_to_replicate/Figure_3.png)<!-- -->
+With the decapod data, create the following density-ridge plot showing the salinity concentration at 1 m (variable named “s1m”) at the two sampled locations in the two sampling years.
+
+![](figures/figures_to_replicate/figure_3-1.png)<!-- -->
+
+## Figure 4
+
+Using the sea surface temperature data, generate this time series plot showing the three different stations
+
+![](figures/figures_to_replicate/figure_4-1.png)<!-- -->
+
 
 ## wrap-up
 
@@ -51,7 +53,7 @@ Finally, once you have completed the exercises, as usual:
 
 ## A few hints
 
-- Make sure to save your `.rmd` file in the rmarkdown folder
+- Make sure to save your `.rmd` file in the rmarkdown folder **before** you knit your file
 - You will need to use the **{here}** package to correctly load the ditch data into the `.Rmd` file as well as to save the figures.
 
 
