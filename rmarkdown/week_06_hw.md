@@ -57,7 +57,7 @@ For the fourth figure, we will use a dataset of mean annual sea surface temperat
 
 # Figure one - Species counts with total counts per site
 
-For this figure we will use the `geom_col()` with its default `possition = "stack"` behaviour to plot the species counts for the first 14 samples in the data set, showing the total counts for each sample.
+For this figure we will use the `geom_col()` with its default `position = "stack"` behaviour to plot the species counts for the first 14 samples in the data set, showing the total counts for each sample.
 
 First we will do a bit of clean-up and pivoting of the decapod data. As usual we want to pivot our species columns into longer form without touching all other columns relating to specific info about the site (e.g. sample, t1m, s1m, etc.). 
 
@@ -69,7 +69,7 @@ For the fill of the columns we will use the viridis palette, so remember to load
 
 
 ```r
-decapod %>% 
+figure_1 <- decapod %>% 
   clean_names() %>% 
   pivot_longer(cols = c(-sample, -t1m, -t45_35m, -s1m, -s45_35m, -ch0_10m, -year, - location),
                names_to = "species",
@@ -77,14 +77,15 @@ decapod %>%
   filter(sample <= 14) %>% 
   mutate(sample = as.factor(sample)) %>% 
   ggplot() +
-  geom_col(aes(x = sample, y = counts, fill = species), possition = "stack") +
+  geom_col(aes(x = sample, y = counts, fill = species), position = "stack") +
   scale_y_continuous(expand = expansion(mult = 0, add = 0)) +
   scale_fill_viridis(discrete = TRUE) +
   theme_bw()
-```
 
-```
-## Warning: Ignoring unknown parameters: possition
+ggsave(here("figures", "figure_1.pdf"), figure_1,
+       width = 190, height = 120, units = "mm")
+
+print(figure_1)
 ```
 
 ![](week_06_hw_files/figure-html/figure_1-1.png)<!-- -->
@@ -95,7 +96,7 @@ For this figure we are going to do, exactly the same, but we are going to change
 
 
 ```r
-decapod %>% 
+figure_2 <- decapod %>% 
   clean_names() %>% 
   pivot_longer(cols = c(-sample, -t1m, -t45_35m, -s1m, -s45_35m, -ch0_10m, -year, - location),
                names_to = "species",
@@ -107,6 +108,11 @@ decapod %>%
   scale_y_continuous(expand = expansion(mult = 0, add = 0)) +
   scale_fill_viridis(discrete = TRUE) +
   theme_bw()
+
+ggsave(here("figures", "figure_2.pdf"), figure_2,
+       width = 190, height = 120, units = "mm")
+
+print(figure_2)
 ```
 
 ![](week_06_hw_files/figure-html/figure_2-1.png)<!-- -->
@@ -119,7 +125,7 @@ Again, we will use the viridis palette
 
 
 ```r
-decapod %>% 
+figure_3 <- decapod %>% 
   clean_names() %>% 
   pivot_longer(cols = c(-sample, -t1m, -t45_35m, -s1m, -s45_35m, -ch0_10m, -year, - location),
                names_to = "species",
@@ -131,6 +137,9 @@ decapod %>%
   geom_density_ridges(aes(x = s1m , y = location, fill = location), alpha = 0.6) +
   scale_fill_viridis(discrete = TRUE) +
   theme_classic()
+
+ggsave(here("figures", "figure_3.pdf"), figure_3,
+       width = 190, height = 120, units = "mm")
 ```
 
 ```
@@ -138,6 +147,15 @@ decapod %>%
 ```
 
 ```
+## Picking joint bandwidth of 0.0611
+```
+
+```r
+print(figure_3)
+```
+
+```
+## Picking joint bandwidth of 0.0743
 ## Picking joint bandwidth of 0.0611
 ```
 
@@ -149,13 +167,18 @@ Using the sea surface temperature data, we are going to generate a time series p
 
 
 ```r
-sst_data %>% 
+figure_4 <- sst_data %>% 
   pivot_longer(cols = -year, names_to = "station", values_to = "temperature") %>% 
   ggplot() +
   geom_line(aes(x = year, y = temperature, colour = station)) +
   geom_vline(aes(xintercept = 1965), linetype = "dotdash") +
   scale_colour_viridis(discrete = TRUE) +
   theme_minimal()
+
+ggsave(here("figures", "figure_4.pdf"), figure_4,
+       width = 190, height = 120, units = "mm")
+
+print(figure_4)
 ```
 
 ![](week_06_hw_files/figure-html/figure_4-1.png)<!-- -->
